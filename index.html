@@ -1,15 +1,419 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Mary Ethel — Happy Girlfriend's Day</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,600;1,9..144,300&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet" />
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
-  </body>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Girlfriends Day, Mary Ethel! 💕</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #fce4ec 0%, #fff5f5 25%, #f3e7f3 50%, #fce4ec 75%, #f3e5f5 100%);
+            font-family: 'Georgia', 'Times New Roman', serif;
+            overflow-x: hidden;
+        }
+
+        .container {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem 1rem;
+            position: relative;
+        }
+
+        /* Floating Hearts */
+        .hearts-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            overflow: hidden;
+            z-index: 0;
+        }
+
+        .heart {
+            position: absolute;
+            bottom: -50px;
+            font-size: 1.5rem;
+            animation: floatUp linear infinite;
+            opacity: 0.6;
+        }
+
+        @keyframes floatUp {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.6;
+            }
+            90% {
+                opacity: 0.6;
+            }
+            100% {
+                transform: translateY(-110vh) rotate(720deg);
+                opacity: 0;
+            }
+        }
+
+        /* Sparkles */
+        .sparkle {
+            position: absolute;
+            font-size: 1rem;
+            animation: twinkle ease-in-out infinite;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        @keyframes twinkle {
+            0%, 100% {
+                opacity: 0.3;
+                transform: scale(1);
+            }
+            50% {
+                opacity: 1;
+                transform: scale(1.4);
+            }
+        }
+
+        /* Main Card */
+        .card {
+            max-width: 700px;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(10px);
+            border-radius: 2rem;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15);
+            padding: 3rem 2rem;
+            position: relative;
+            z-index: 10;
+            animation: slideUp 1s ease-out forwards;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Top Gradient Border */
+        .top-border {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 6px;
+            background: linear-gradient(90deg, #ec4899, #f472b6, #a855f7, #ec4899);
+            z-index: 100;
+        }
+
+        /* Header Decoration */
+        .header-decoration {
+            text-align: center;
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        /* Title */
+        .title {
+            text-align: center;
+            font-size: 2.5rem;
+            font-weight: bold;
+            background: linear-gradient(90deg, #ec4899, #f472b6, #a855f7);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 0.5rem;
+            line-height: 1.2;
+        }
+
+        /* Name */
+        .name {
+            text-align: center;
+            font-size: 2rem;
+            font-weight: 600;
+            color: #e11d48;
+            margin-bottom: 1.5rem;
+            font-style: italic;
+        }
+
+        /* Decorative Divider */
+        .divider {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.75rem;
+            margin-bottom: 2rem;
+        }
+
+        .divider-line {
+            height: 1px;
+            width: 80px;
+            background: linear-gradient(90deg, transparent, #f472b6);
+        }
+
+        .divider-line:last-child {
+            background: linear-gradient(90deg, #f472b6, transparent);
+        }
+
+        .divider-icon {
+            font-size: 1.5rem;
+        }
+
+        /* Message Content */
+        .message {
+            text-align: center;
+            color: #4a5568;
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+
+        .message p {
+            margin-bottom: 1.5rem;
+        }
+
+        .message .highlight {
+            font-size: 1.25rem;
+            color: #4a5568;
+        }
+
+        .quote-container {
+            padding: 1.5rem;
+        }
+
+        .quote {
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: #ec4899;
+            font-style: italic;
+        }
+
+        /* Signature Section */
+        .signature {
+            margin-top: 2.5rem;
+            text-align: center;
+        }
+
+        .signature-name {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #9333ea;
+            margin-top: 0.5rem;
+        }
+
+        /* Bottom Decoration */
+        .bottom-decoration {
+            margin-top: 2rem;
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            font-size: 2rem;
+            animation: bounce 1s ease-in-out infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-8px); }
+        }
+
+        /* Footer */
+        .footer {
+            position: fixed;
+            bottom: 1rem;
+            text-align: center;
+            color: #f472b6;
+            font-size: 0.875rem;
+            z-index: 10;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #fdf2f8;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(to bottom, #ec4899, #a855f7);
+            border-radius: 4px;
+        }
+
+        /* Responsive */
+        @media (max-width: 640px) {
+            .card {
+                padding: 2rem 1.5rem;
+                border-radius: 1.5rem;
+            }
+
+            .title {
+                font-size: 1.8rem;
+            }
+
+            .name {
+                font-size: 1.5rem;
+            }
+
+            .message {
+                font-size: 1rem;
+            }
+
+            .quote {
+                font-size: 1.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Top Border -->
+    <div class="top-border"></div>
+
+    <!-- Floating Hearts Container -->
+    <div class="hearts-container" id="hearts"></div>
+
+    <!-- Sparkles Container -->
+    <div id="sparkles"></div>
+
+    <!-- Main Container -->
+    <div class="container">
+        <!-- Main Card -->
+        <div class="card">
+            <!-- Header Decoration -->
+            <div class="header-decoration">🌸</div>
+
+            <!-- Main Title -->
+            <h1 class="title">Happy Girlfriends Day</h1>
+
+            <!-- Name -->
+            <h2 class="name">Dear Mary Ethel</h2>
+
+            <!-- Decorative Divider -->
+            <div class="divider">
+                <div class="divider-line"></div>
+                <span class="divider-icon">💝</span>
+                <div class="divider-line"></div>
+            </div>
+
+            <!-- Message -->
+            <div class="message">
+                <p class="highlight">
+                    On this special day, I want you to know how much you mean to me.
+                </p>
+
+                <p>
+                    You are not just a friend — you are a blessing in my life. Your kindness, 
+                    your warmth, and your beautiful spirit make every moment brighter. 
+                    Through laughter and tears, through thick and thin, you have always been 
+                    there, and I am so grateful for your presence in my life.
+                </p>
+
+                <p>
+                    Thank you for being the amazing person you are. Thank you for your endless 
+                    support, your genuine care, and your unwavering friendship. You deserve 
+                    all the happiness in the world, and I hope today brings a smile to your 
+                    beautiful face.
+                </p>
+
+                <div class="quote-container">
+                    <p class="quote">
+                        "Friends are the family we choose for ourselves."
+                    </p>
+                </div>
+
+                <p class="highlight">
+                    You are irreplaceable, Mary Ethel. Here's to celebrating YOU today 
+                    and always! 🥂
+                </p>
+            </div>
+
+            <!-- Signature Section -->
+            <div class="signature">
+                <div class="divider">
+                    <div class="divider-line" style="background: linear-gradient(90deg, transparent, #a855f7);"></div>
+                    <span class="divider-icon">💖</span>
+                    <div class="divider-line" style="background: linear-gradient(90deg, #a855f7, transparent);"></div>
+                </div>
+                <p style="color: #6b7280; font-size: 1.1rem;">With all my love and appreciation,</p>
+                <p class="signature-name">Your Special Friend 💕</p>
+            </div>
+        </div>
+
+        <!-- Bottom Decoration -->
+        <div class="bottom-decoration">
+            <span>🌹</span>
+            <span>💖</span>
+            <span>🌸</span>
+            <span>💖</span>
+            <span>🌹</span>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+        <p>Made with 💕 for an extraordinary friend</p>
+    </div>
+
+    <script>
+        // Create floating hearts
+        function createHearts() {
+            const container = document.getElementById('hearts');
+            const heartsArray = ['💕', '💗', '💖', '💝', '💘', '❤️', '🩷'];
+            
+            for (let i = 0; i < 15; i++) {
+                const heart = document.createElement('div');
+                heart.className = 'heart';
+                heart.textContent = heartsArray[Math.floor(Math.random() * heartsArray.length)];
+                heart.style.left = Math.random() * 100 + '%';
+                heart.style.animationDuration = (4 + Math.random() * 6) + 's';
+                heart.style.animationDelay = Math.random() * 5 + 's';
+                heart.style.fontSize = (1 + Math.random() * 1.5) + 'rem';
+                container.appendChild(heart);
+            }
+        }
+
+        // Create sparkles
+        function createSparkles() {
+            const container = document.getElementById('sparkles');
+            const sparkleSymbols = ['✨', '⭐', '💫', '🌟'];
+            
+            for (let i = 0; i < 20; i++) {
+                const sparkle = document.createElement('div');
+                sparkle.className = 'sparkle';
+                sparkle.textContent = sparkleSymbols[Math.floor(Math.random() * sparkleSymbols.length)];
+                sparkle.style.left = Math.random() * 100 + '%';
+                sparkle.style.top = Math.random() * 100 + '%';
+                sparkle.style.animationDuration = (1 + Math.random() * 2) + 's';
+                sparkle.style.animationDelay = Math.random() * 3 + 's';
+                container.appendChild(sparkle);
+            }
+        }
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+            createHearts();
+            createSparkles();
+        });
+    </script>
+</body>
 </html>
