@@ -21,15 +21,32 @@
   }
   *{box-sizing:border-box;margin:0;padding:0}
   html{scroll-behavior:smooth}
-  body{
-    font-family:'Cormorant Garamond',Georgia,serif;
-    background:var(--cream);
-    color:var(--ink);
-    overflow-x:hidden;
-    line-height:1.35;
-  }
-  ::selection{background:var(--rose);color:var(--ink)}
+  /* Background Video */
+#bg-video{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    z-index:-3;
+}
 
+/* Dark overlay */
+.video-overlay{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background:rgba(0,0,0,0.35);
+    z-index:-2;
+}
+
+/* Make page background transparent */
+body{
+    background:transparent;
+}
   /* floating particles */
   .particle-layer{position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden}
   .p{
@@ -163,9 +180,19 @@
 </head>
 <body>
 
-<!-- Floating particles -->
-<div class="particle-layer" id="particles" aria-hidden="true"></div>
+<body>
 
+    <!-- Background Video -->
+    <video autoplay muted loop playsinline id="bg-video">
+        <source src="ethel.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+
+    <!-- Dark Overlay -->
+    <div class="video-overlay"></div>
+
+    <!-- Floating particles -->
+    <div class="particle-layer" id="particles" aria-hidden="true"></div>
 <!-- HERO -->
 <header style="position:relative;z-index:10;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:8rem 1.5rem 7rem;overflow:hidden" class="fade-up">
   <!-- soft orbs -->
